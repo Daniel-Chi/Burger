@@ -55,8 +55,15 @@
         //POST method through submit button
         $(".submitBtn").on("click", function (event) {
             event.preventDefault();
+            const burgerName = $("#burgerName").val().trim()
+            if (burgerName === "") {
+                return alert("Burger name is required!");
+            };
+            if (burgerName.length > 30) {
+                return alert("Max length is 30 characters");
+            };
             $.post("/api/burgers", {
-                name: $("#burgerName").val().trim()
+                name: burgerName
             }, function (data) {
                 location.reload(true);
             });
