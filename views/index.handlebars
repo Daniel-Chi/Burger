@@ -1,3 +1,72 @@
-<input type="text" placeholder="Add a Burger!">
-<button type="submit"
+<br>
+<div class="container">
+    <div class="row">
+        {{!-- Left Column for Burgers to eat --}}
+        <div class="col-6">
+            <ul>
+                {{#each burgers}}
+                {{#unless devoured}}
+                <li class="row">
+                    <span class="col-1"></span>
+                    <span class="col-7" style="width: 200px; margin: 4px;">
+                        {{id}}. {{burger_name}}
+                    </span>
+                    <button class="col-3 devourBtn" data-id="{{id}}"
+                        style="padding: 2px; background-color:darkblue; color:white;">
+                        Munch
+                    </button>
+                </li>
+                {{/unless}}
+                {{/each}}
+            </ul>
+        </div>
+        {{!-- Right Column for Eaten Burgers --}}
+        <div class="col-6">
+            <ul>
+                {{#each burgers}}
+                {{#if devoured}}
+                <li>
+                    {{id}}. {{burger_name}}
+                </li>
+                {{/if}}
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{{!-- New Burger Form --}}
+<input type="text" placeholder="Add a Burger!" id="burgerName"
+    style="display: block; margin-left: auto; margin-right: auto; padding: 10px; width: 256px">
+<button type="submit" class="submitBtn"
     style="display: block; margin-left: auto; margin-right: auto; color:white; background-color:darkblue; padding:4px; width:100px;">Submit</button>
+
+{{!-- button listeners for POST and PUT requests --}}
+<script>
+    //wait for all components to load
+    $(document).ready(function () {
+
+        //POST method through submit button
+        $(".submitBtn").on("click", function (event) {
+            event.preventDefault();
+            $.post("/api/burgers", {
+                name: $("#burgerName").val().trim()
+            }, function(data){
+                location.reload(true);
+            });
+        });
+
+        //PUT method through devour button
+        $(".devourBtn").on("click", function (event) {
+            const id = $(this).data("id")
+            $.ajax({
+                url: "/api/burgers/" + id,
+                type: "PUT",
+                success: function(data){
+                    location.reload(true);
+                }
+            });
+        });
+    });
+
+</script>

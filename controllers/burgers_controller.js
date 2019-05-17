@@ -12,13 +12,13 @@ const router = function(app) {
     //POST method to insert new burger into database
     app.post("/api/burgers", function(req, res){
         Burger.insertOne(req.body.name, function(data){
-            res.redirect("/");
+            res.send(data);
         });
     });
     //PUT method to update devoured status of a burger
     app.put("/api/burgers/:id", function(req, res){
         Burger.updateOne(req.params.id, function(data){
-            res.redirect("/");
+            res.send(data);
         });
     });
 }

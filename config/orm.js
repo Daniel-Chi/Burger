@@ -11,7 +11,7 @@ module.exports = {
             });
     },
     insertOne: function (tableToInsertInto, columnToGiveValue, valueGivenToColumn, callback) {
-        connection.query("INSERT INTO ?? (??) VALUES (??)", [tableToInsertInto, columnToGiveValue, valueGivenToColumn],
+        connection.query("INSERT INTO ?? (??) VALUES (?)", [tableToInsertInto, columnToGiveValue, valueGivenToColumn],
             function (err, data) {
                 if (err) throw err;
                 callback(data);
