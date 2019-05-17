@@ -29,4 +29,15 @@ connection.connect(function (err) {
     console.log("connected as id " + connection.threadId);
 });
 
+if (process.env.PORT) {
+    connection.query("CREATE TABLE burgers ("
+        + "id INTEGER AUTO_INCREMENT,"
+        + "burger_name VARCHAR(30) NOT NULL,"
+        + "devoured BOOLEAN DEFAULT FALSE,"
+        + "PRIMARY KEY (id)"
+        +");", function(err, data){
+            console.log("Error (if any): " + err);
+        });
+};
+
 module.exports = connection;
