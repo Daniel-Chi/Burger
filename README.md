@@ -8,3 +8,4 @@ Uses separate local MySQL database connection for testing.
 Uses a custom ORM constructed with MySQL queries.
 Uses the ORM to construct model functions for expected data.
 Demonstrates complete CRUD functionality.
+Has very basic input validation, checks for empty names and names over 30 characters.
