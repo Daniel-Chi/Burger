@@ -41,7 +41,8 @@ if (process.env.PORT) {
             if (err) throw err;
         });
     //seed
-    connection.query('INSERT INTO burgers (burger_name) VALUES ("Impossible Burger"); INSERT INTO burgers (burger_name) VALUES ("Unlikely Burger"); INSERT INTO burgers (burger_name) VALUES ("Plausible Burger");',
+    connection.query("INSERT INTO burgers (burger_name) VALUES (?); INSERT INTO burgers (burger_name) VALUES (?); INSERT INTO burgers (burger_name) VALUES (?);",
+        ["Impossible Burger", "Unlikely Burger", "Plausible Burger"],
         function (err, data) {
             if (err) throw err;
         });
