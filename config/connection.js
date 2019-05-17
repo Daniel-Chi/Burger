@@ -32,10 +32,6 @@ connection.connect(function (err) {
 //only if deployed
 if (process.env.PORT) {
     //schema
-    connection.query("DROP TABLE IF EXISTS burgers",
-        function (err, data) {
-            if (err) throw err;
-        });
     connection.query("CREATE TABLE burgers (id INTEGER AUTO_INCREMENT, burger_name VARCHAR(30) NOT NULL, devoured BOOLEAN DEFAULT FALSE, PRIMARY KEY (id)",
         function (err, data) {
             if (err) throw err;
