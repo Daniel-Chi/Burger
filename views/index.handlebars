@@ -25,8 +25,14 @@
             <ul>
                 {{#each burgers}}
                 {{#if devoured}}
-                <li>
-                    {{id}}. {{burger_name}}
+                <li class="row">
+                    <span class="col-7">
+                        {{id}}. {{burger_name}}
+                    </span>
+                    <button class="col-4 deleteBtn" data-id="{{id}}"
+                        style="padding: 2px; background-color:darkblue; color:white;">
+                        Delete
+                    </button>
                 </li>
                 {{/if}}
                 {{/each}}
@@ -51,7 +57,7 @@
             event.preventDefault();
             $.post("/api/burgers", {
                 name: $("#burgerName").val().trim()
-            }, function(data){
+            }, function (data) {
                 location.reload(true);
             });
         });
@@ -62,7 +68,19 @@
             $.ajax({
                 url: "/api/burgers/" + id,
                 type: "PUT",
-                success: function(data){
+                success: function (data) {
+                    location.reload(true);
+                }
+            });
+        });
+
+        //DELETE method through delete button
+        $(".deleteBtn").on("click", function (event) {
+            const id = $(this).data("id")
+            $.ajax({
+                url: "/api/burgers/" + id,
+                type: "DELETE",
+                success: function (data) {
                     location.reload(true);
                 }
             });

@@ -21,6 +21,11 @@ const router = function(app) {
             res.send(data);
         });
     });
+    app.delete("/api/burgers/:id", function(req, res){
+        Burger.deleteOne(req.params.id, function(data){
+            res.send(data);
+        });
+    });
 }
 //export router
 module.exports = router;

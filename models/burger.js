@@ -11,6 +11,9 @@ const Burger = {
     },
     updateOne: function (id, callback) {
         orm.updateOne("burgers", "devoured", true, "id", id, callback);
+    },
+    deleteOne: function (id, callback) {
+        orm.deleteOne("burgers", "id", id, callback)
     }
 };
 module.exports = Burger;

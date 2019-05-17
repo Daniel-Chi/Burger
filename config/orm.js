@@ -24,4 +24,11 @@ module.exports = {
                 callback(data);
             });
     },
+    deleteOne: function (tableToDeleteFrom, columnToIdentify, ID, callback){
+        connection.query("DELETE FROM ?? WHERE ?? = ?", [tableToDeleteFrom, columnToIdentify, ID], 
+        function(err, data){
+            if (err) throw err;
+            callback(data);
+        });
+    }
 };
